@@ -252,9 +252,7 @@ export const useStylesThanksAppleMusic = makeStyles((theme) => ({
     },
   },
   thanks__map: {
+    width: '100%',
     marginTop: '40px',
-    '& img': {
-      width: '100%',
-    },
   },
 }));

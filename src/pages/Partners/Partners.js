@@ -1,4 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+
+import {
+  getPartnersAction,
+  getOffersAction,
+  getPartnersMenuListAction,
+} from '../../store/sagas/partnersSaga';
 
 import Layout from '../../layouts/Layout/Layout';
 import CheckboxMcd from '../../components/CheckboxMcd/CheckboxMcd';
@@ -7,82 +14,41 @@ import OfferList from '../../components/OfferList/OfferList';
 import Advantage from '../../components/Advantage/Advantage';
 import { useStylesPartners } from './PartnersStyles';
 
-function Partners() {
+function Partners({
+  partnersMenuList,
+  getPartnersMenuListAction,
+  partners,
+  getPartnersAction,
+  offers,
+  getOffersAction,
+}) {
   const classes = useStylesPartners();
 
-  const arr = [
-    { name: 'Все партнеры' },
-    { name: 'Популярные' },
-    { name: 'Супермаркеты' },
-    { name: 'Кафе и рестораны' },
-    { name: 'Такси' },
-    { name: 'Красота' },
-    { name: 'Электроника и бытовая техника' },
-    { name: 'Зоотовары' },
-    { name: 'Кино и театр' },
-    { name: '...' },
-  ];
+  useEffect(() => {
+    getPartnersAction();
+    getOffersAction();
+    getPartnersMenuListAction();
+  }, [getPartnersAction, getOffersAction, getPartnersMenuListAction]);
+
   const [bonusCheckbox, setBonusCheckbox] = useState(true);
   const handleBonusCheckbox = () => {
     setBonusCheckbox(!bonusCheckbox);
   };
 
-  const partners = [
-    {
-      id: 1,
-      sale: '1,5%',
-      img: 'img/img_1.png',
-      name: 'М.Видео',
-    },
-    {
-      id: 2,
-      sale: '3%',
-      img: 'img/img_2.png',
-      name: 'Бургер Кинг',
-    },
-    {
-      id: 3,
-      sale: '4,5%',
-      img: 'img/img_3.png',
-      name: 'Холодильник.ру',
-    },
-    {
-      id: 4,
-      sale: 'От 1,5%',
-      img: 'img/img_4.png',
-      name: 'BORK',
-    },
-    {
-      id: 5,
-      sale: '1,5%',
-      img: 'img/img_5.png',
-      name: 'Евросеть',
-    },
-  ];
+  const [visibleMenuList, setVisibleMenuList] = useState(9);
+  const showMoreMenuList = () => {
+    setVisibleMenuList((prev) => prev + 3);
+  };
 
-  const offers = [
-    {
-      id: 1,
-      img: 'img/offer_1.png',
-      logo: 'img/partner-small1.png',
-      name: 'Технопарк',
-      discription: '20% спасибо за технику Electrolux',
-    },
-    {
-      id: 2,
-      img: 'img/offer_2.png',
-      logo: 'img/partner-small5.png',
-      name: 'Евросеть',
-      discription: '10% спасибо за покупки в черную пятницу',
-    },
-    {
-      id: 3,
-      img: 'img/offer_3.png',
-      logo: 'img/partner-small6.png',
-      name: 'М.Видео',
-      discription: '15% спасибо для студентов',
-    },
-  ];
+  const [visiblePartners, setVisiblePartners] = useState(5);
+  const showMorePartners = () => {
+    setVisiblePartners((prev) => prev + 4);
+  };
+
+  const [visibleOffers, setVisibleOffers] = useState(3);
+  const showMoreOffers = () => {
+    setVisibleOffers((prev) => prev + 4);
+  };
 
   return (
     <Layout>
@@ -91,32 +57,52 @@ function Partners() {
 
         <div className={classes.partners__menu_continer}>
           <ul className={classes.partners__menu}>
-            {arr.map((i, index) => {
+            {partnersMenuList.slice(0, visibleMenuList).map((i, index) => {
               return (
                 <li key={index} className={classes.partners__menu_list}>
                   <a href="/">{i.name}</a>
                 </li>
               );
             })}
+            {visibleMenuList >= partnersMenuList.length ? null : (
+              <button
+                className={classes.partners__menu_btn}
+                onClick={showMoreMenuList}
+              >
+                ...
+              </button>
+            )}
           </ul>
         </div>
 
         <div className={classes.partners__menu_checkbox}>
-          <p className={classes.partners__menu_checkbox_text}>
+          <p
+            className={
+              bonusCheckbox
+                ? `${classes.partners__menu_checkbox_text}`
+                : `${classes.partners__menu_checkbox_text} active`
+            }
+          >
             Начисляют спасибо
           </p>
           <CheckboxMcd
             handleChange={handleBonusCheckbox}
             checked={bonusCheckbox}
           />
-          <p className={classes.partners__menu_checkbox_text}>
+          <p
+            className={
+              !bonusCheckbox
+                ? `${classes.partners__menu_checkbox_text}`
+                : `${classes.partners__menu_checkbox_text} active`
+            }
+          >
             Принимают спасибо
           </p>
         </div>
 
         <div className={classes.partners__list}>
           <div className={classes.partners__list_group}>
-            {partners.map((i) => {
+            {partners.slice(0, visiblePartners).map((i) => {
               return (
                 <PartnersList
                   key={i.id}
@@ -127,8 +113,14 @@ function Partners() {
               );
             })}
           </div>
-          {/* <MyButton>Еще 4 партнера</MyButton> */}
-          <button className={classes.partners__btn}>Еще 4 партнера</button>
+          {visiblePartners >= partners.length ? null : (
+            <button
+              className={classes.partners__btn}
+              onClick={showMorePartners}
+            >
+              Еще 4 партнера
+            </button>
+          )}
         </div>
 
         <div className={classes.partners__offer}>
@@ -138,7 +130,7 @@ function Partners() {
             </h2>
           </div>
           <div className={classes.partners__offer_group}>
-            {offers.map((i) => {
+            {offers.slice(0, visibleOffers).map((i) => {
               return (
                 <OfferList
                   key={i.id}
@@ -150,7 +142,11 @@ function Partners() {
               );
             })}
           </div>
-          <button className={classes.partners__btn}>Еще 4 предложения</button>
+          {visibleOffers >= offers.length ? null : (
+            <button className={classes.partners__btn} onClick={showMoreOffers}>
+              Еще 4 предложения
+            </button>
+          )}
         </div>
         <Advantage />
       </div>
@@ -158,4 +154,16 @@ function Partners() {
   );
 }
 
-export default Partners;
+const mapStateToProps = (state) => ({
+  partnersMenuList: state.partnersReducer.partnersMenuList,
+  partners: state.partnersReducer.partners,
+  offers: state.partnersReducer.offers,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getPartnersMenuListAction: () => dispatch(getPartnersMenuListAction()),
+  getPartnersAction: () => dispatch(getPartnersAction()),
+  getOffersAction: () => dispatch(getOffersAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Partners);

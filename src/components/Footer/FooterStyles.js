@@ -48,8 +48,8 @@ export const useStylesFooter = makeStyles((theme) => ({
     color: theme.palette.primary.black,
     textAlign: 'center',
 
-    [theme.breakpoints.up('md')]: {
-      // display: 'none',
+    [theme.breakpoints.up('lg')]: {
+      textAlign: 'left',
     },
   },
   footer__menu: {

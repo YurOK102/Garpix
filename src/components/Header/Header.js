@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 import { Link } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { connect } from 'react-redux';
 
+import { getMenuListAction } from '../../store/sagas/partnersSaga';
 import OpenMenu from '../OpenMenu/OpenMenu';
 import { useStylesHeader } from './HeaderStyles';
 
@@ -18,7 +20,7 @@ const customStyles = {
   },
 };
 //
-function Header() {
+function Header({ menuList, getMenuListAction }) {
   const classes = useStylesHeader();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('lg'));
@@ -31,19 +33,10 @@ function Header() {
   function closeModal() {
     setModalIsOpen(false);
   }
+  useEffect(() => {
+    getMenuListAction();
+  }, [getMenuListAction]);
 
-  const arr = [
-    { name: 'Купоны и сертификаты' },
-    { name: 'Впечатления' },
-    { name: 'Авиабилеты' },
-    { name: 'Ж/д билеты' },
-    { name: 'Отели' },
-    { name: 'Каршеринг' },
-    { name: 'Театры' },
-    { name: 'Страхование' },
-    { name: 'Как подключиться' },
-    { name: 'Партнеры' },
-  ];
   Modal.setAppElement('#root');
   return (
     <div className={classes.header_continer}>
@@ -53,7 +46,7 @@ function Header() {
         </Link>
         {matches ? (
           <ul className={classes.header__menu}>
-            {arr.map((i, index) => {
+            {menuList.map((i, index) => {
               return (
                 <li key={index}>
                   <a href="/">{i.name}</a>
@@ -109,4 +102,12 @@ function Header() {
   );
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  menuList: state.partnersReducer.menuList,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getMenuListAction: () => dispatch(getMenuListAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

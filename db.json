@@ -1,0 +1,218 @@
+{
+  "menuList": [
+    { "name": "Купоны и сертификаты" },
+    { "name": "Впечатления" },
+    { "name": "Авиабилеты" },
+    { "name": "Ж/д билеты" },
+    { "name": "Отели" },
+    { "name": "Каршеринг" },
+    { "name": "Театры" },
+    { "name": "Страхование" },
+    { "name": "Как подключиться" },
+    { "name": "Партнеры" }
+  ],
+
+  "partnersMenuList": [
+    { "name": "Все партнеры" },
+    { "name": "Популярные" },
+    { "name": "Супермаркеты" },
+    { "name": "Кафе и рестораны" },
+    { "name": "Такси" },
+    { "name": "Красота" },
+    { "name": "Электроника и бытовая техника" },
+    { "name": "Зоотовары" },
+    { "name": "Кино и театр" },
+    { "name": "Образование" },
+    { "name": "Страхование" },
+    { "name": "Недвижимость" }
+  ],
+
+  "partners": [
+    {
+      "id": 1,
+      "sale": "1,5%",
+      "img": "img/img_1.png",
+      "name": "М.Видео"
+    },
+    {
+      "id": 2,
+      "sale": "3%",
+      "img": "img/img_2.png",
+      "name": "Бургер Кинг"
+    },
+    {
+      "id": 3,
+      "sale": "4,5%",
+      "img": "img/img_3.png",
+      "name": "Холодильник.ру"
+    },
+    {
+      "id": 4,
+      "sale": "От 1,5%",
+      "img": "img/img_4.png",
+      "name": "BORK"
+    },
+    {
+      "id": 5,
+      "sale": "1,5%",
+      "img": "img/img_5.png",
+      "name": "Евросеть"
+    },
+    {
+      "id": 6,
+      "sale": "1,5%",
+      "img": "img/img_1.png",
+      "name": "М.Видео"
+    },
+    {
+      "id": 7,
+      "sale": "3%",
+      "img": "img/img_2.png",
+      "name": "Бургер Кинг"
+    },
+    {
+      "id": 8,
+      "sale": "4,5%",
+      "img": "img/img_3.png",
+      "name": "Холодильник.ру"
+    },
+    {
+      "id": 9,
+      "sale": "От 1,5%",
+      "img": "img/img_4.png",
+      "name": "BORK"
+    }
+  ],
+
+  "offers": [
+    {
+      "id": 1,
+      "img": "img/offer_1.png",
+      "logo": "img/partner-small1.png",
+      "name": "Технопарк",
+      "discription": "20% спасибо за технику Electrolux"
+    },
+    {
+      "id": 2,
+      "img": "img/offer_2.png",
+      "logo": "img/partner-small5.png",
+      "name": "Евросеть",
+      "discription": "10% спасибо за покупки в черную пятницу"
+    },
+    {
+      "id": 3,
+      "img": "img/offer_3.png",
+      "logo": "img/partner-small6.png",
+      "name": "М.Видео",
+      "discription": "15% спасибо для студентов"
+    },
+    {
+      "id": 4,
+      "img": "img/offer_1.png",
+      "logo": "img/partner-small1.png",
+      "name": "Технопарк",
+      "discription": "20% спасибо за технику Electrolux"
+    },
+    {
+      "id": 5,
+      "img": "img/offer_2.png",
+      "logo": "img/partner-small5.png",
+      "name": "Евросеть",
+      "discription": "10% спасибо за покупки в черную пятницу"
+    },
+    {
+      "id": 6,
+      "img": "img/offer_2.png",
+      "logo": "img/partner-small5.png",
+      "name": "Евросеть",
+      "discription": "10% спасибо за покупки в черную пятницу"
+    },
+    {
+      "id": 7,
+      "img": "img/offer_3.png",
+      "logo": "img/partner-small6.png",
+      "name": "М.Видео",
+      "discription": "15% спасибо для студентов"
+    }
+  ],
+
+  "bonus": {
+    "sales": [
+      { "id": 1, "img": "img/mini_call_1.png" },
+      { "id": 2, "img": "img/mini_call_2.png" },
+      { "id": 3, "img": "img/mini_call_3.png" },
+      { "id": 4, "img": "img/mini_call_4.png" },
+      { "id": 5, "img": "img/mini_call_5.png" }
+    ],
+    "percents": [
+      { "id": 1, "img": "img/mini_call_6.png", "percents": "3" },
+      { "id": 2, "img": "img/mini_call_7.png", "percents": "1.5" },
+      { "id": 3, "img": "img/mini_call_8.png", "percents": "5" }
+    ],
+    "coupons": [
+      { "id": 1, "img": "img/mini_call_9.png" },
+      { "id": 2, "img": "img/mini_call_10.png" },
+      { "id": 3, "img": "img/mini_call_11.png" }
+    ],
+    "persinalDates": [
+      { "id": 1, "img": "img/mini_call_12.png" },
+      { "id": 2, "img": "img/mini_call_13.png" },
+      { "id": 3, "img": "img/mini_call_14.png" },
+      { "id": 4, "img": "img/mini_call_15.png" },
+      { "id": 5, "img": "img/mini_call_16.png" }
+    ]
+  },
+
+  "privilege": {
+    "description": [
+      { "name": "Получите доступ к миллионам альбомов, исполнителей и песен" },
+      { "name": "Эксклюзивный и оригинальный контент" },
+      { "name": "Вы можете отказаться от подписки в любой момент" },
+      { "name": "Скачивайте любимую музыку и слушайте офлайн" }
+    ],
+    "faq": [
+      {
+        "name": "1.  Откройте приложение «Музыка» и введите существующий Apple ID и пароль для входа в учетную запись. (Если у   вас нет Apple ID, вам будет предложено его создать)"
+      },
+      {
+        "name": "2.  Нажмите на «3 месяца бесплатно» (специальное предложение для новых пользователей)."
+      },
+      {
+        "name": "3.  Выберите индивидуальную подписку и нажмите «3 месяца бесплатно»."
+      },
+      { "name": "4.  Перейдите в учетную запись." },
+      { "name": "5.  Нажмите «Использовать код»." },
+      { "name": "6.  Введите 12-значный код." },
+      { "name": "7.  Получите сообщение с подтверждением использования кода." }
+    ],
+    "address": [
+      {
+        "id": 1,
+        "logo": "img/mini_logo_thanks.png",
+        "logo_2": "img/ellipse_group.png",
+        "address": "Москва, ул. Большая Татарская, 21",
+        "metro_1": "Маяковская",
+        "metro_2": "Лубянка",
+        "phone": "+7 495 220-30-44"
+      },
+      {
+        "id": 2,
+        "logo": "img/mini_logo_thanks.png",
+        "logo_2": "img/ellipse_group.png",
+        "address": "Москва, ул. Большая Татарская, 22",
+        "metro_1": "Маяковская",
+        "metro_2": "Лубянка",
+        "phone": "+7 495 220-30-44"
+      },
+      {
+        "id": 3,
+        "logo": "img/mini_logo_thanks.png",
+        "logo_2": "img/ellipse_group.png",
+        "address": "Москва, ул. Большая Татарская, 23",
+        "metro_1": "Маяковская",
+        "metro_2": "Лубянка",
+        "phone": "+7 495 220-30-44"
+      }
+    ]
+  }
+}

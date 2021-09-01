@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import commonReducer from './commonReducer';
+import partnersReducer from './partnersReducer';
+import thanksReducer from './thanksReducer';
 
-export const rootReducer = combineReducers({
-  commonReducer,
+export default combineReducers({
+  partnersReducer,
+  thanksReducer,
 });

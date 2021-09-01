@@ -44,9 +44,9 @@ export const useStylesPartners = makeStyles((theme) => ({
     },
   },
   partners__menu: {
-    width: '1280px',
+    width: '1650px',
     display: 'flex',
-    alignItems: 'center',
+    // alignItems: 'center',
 
     [theme.breakpoints.up('md')]: {
       width: '100%',
@@ -83,6 +83,14 @@ export const useStylesPartners = makeStyles((theme) => ({
       transitionDuration: '0.5s',
     },
   },
+  partners__menu_btn: {
+    height: '46px',
+    background: theme.palette.primary.white,
+    padding: '10px',
+    fontSize: '24px',
+    textAlign: 'center',
+  },
+
   partners__menu_checkbox: {
     width: '300px',
     display: 'flex',
@@ -100,6 +108,12 @@ export const useStylesPartners = makeStyles((theme) => ({
   partners__menu_checkbox_text: {
     ...theme.typography.p,
     textAlign: 'center',
+
+    '&.active': {
+      ...theme.typography.p,
+      textAlign: 'center',
+      color: theme.palette.primary.green,
+    },
   },
 
   partners__list_group: {
@@ -137,6 +151,9 @@ export const useStylesPartners = makeStyles((theme) => ({
     padding: '12px 20px',
     margin: '0 auto',
     display: 'block',
+    '&.hidden': {
+      display: 'none',
+    },
 
     [theme.breakpoints.up('xl')]: {
       // display: 'none',

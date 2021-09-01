@@ -1,63 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
+import { getPrivilegeAction } from '../../store/sagas/thanksSaga';
 import Layout from '../../layouts/Layout/Layout';
+import CustomMap from '../../components/YandexMap/YandexMap';
 import { useStylesThanksAppleMusic } from './ThanksAppleMusicStyle';
 
-function ThanksAppleMusic() {
+function ThanksAppleMusic({ privilege, getPrivilegeAction }) {
   const classes = useStylesThanksAppleMusic();
 
-  const description = [
-    { name: 'Получите доступ к миллионам альбомов, исполнителей и песен' },
-    { name: 'Эксклюзивный и оригинальный контент' },
-    { name: 'Вы можете отказаться от подписки в любой момент' },
-    { name: 'Скачивайте любимую музыку и слушайте офлайн' },
-  ];
-  const faq = [
-    {
-      name: `1.  Откройте приложение «Музыка» и введите существующий Apple ID и пароль для входа в учетную запись. 
-    (Если у   вас нет Apple ID, вам будет предложено его создать).`,
-    },
-    {
-      name: '2.  Нажмите на «3 месяца бесплатно» (специальное предложение для новых пользователей).',
-    },
-    {
-      name: '3.  Выберите индивидуальную подписку и нажмите «3 месяца бесплатно».',
-    },
-    { name: '4.  Перейдите в учетную запись.' },
-    { name: '5.  Нажмите «Использовать код».' },
-    { name: '6.  Введите 12-значный код.' },
-    { name: '7.  Получите сообщение с подтверждением использования кода.' },
-  ];
+  useEffect(() => {
+    getPrivilegeAction();
+  }, [getPrivilegeAction]);
 
-  const address = [
-    {
-      id: 1,
-      logo: 'img/mini_logo_thanks.png',
-      logo_2: 'img/ellipse_group.png',
-      address: 'Москва, ул. Большая Татарская, 21',
-      metro_1: 'Маяковская',
-      metro_2: 'Лубянка',
-      phone: '+7 495 220-30-44',
-    },
-    {
-      id: 2,
-      logo: 'img/mini_logo_thanks.png',
-      logo_2: 'img/ellipse_group.png',
-      address: 'Москва, ул. Большая Татарская, 22',
-      metro_1: 'Маяковская',
-      metro_2: 'Лубянка',
-      phone: '+7 495 220-30-44',
-    },
-    {
-      id: 3,
-      logo: 'img/mini_logo_thanks.png',
-      logo_2: 'img/ellipse_group.png',
-      address: 'Москва, ул. Большая Татарская, 23',
-      metro_1: 'Маяковская',
-      metro_2: 'Лубянка',
-      phone: '+7 495 220-30-44',
-    },
-  ];
+  const { description, faq, address } = privilege;
+
   return (
     <Layout>
       <div className={classes.thanks}>
@@ -84,7 +41,7 @@ function ThanksAppleMusic() {
             </span>
 
             <div className={classes.thanks__box}>
-              {description.map((i, index) => {
+              {description?.map((i, index) => {
                 return (
                   <div key={index} className={classes.thanks__box_wrapper}>
                     <div className={classes.thanks__box_void}></div>
@@ -99,7 +56,7 @@ function ThanksAppleMusic() {
               Как использовать промо-код:
             </span>
             <div className={classes.thanks__box}>
-              {faq.map((i, index) => {
+              {faq?.map((i, index) => {
                 return (
                   <div key={index} className={classes.thanks__box_wrapper}>
                     <span className={classes.thanks__box_description}>
@@ -159,7 +116,7 @@ function ThanksAppleMusic() {
         </div>
 
         <div className={classes.thanks__address}>
-          {address.map((i) => {
+          {address?.map((i) => {
             return (
               <div key={i.id} className={classes.thanks__address_wrapper}>
                 <div className={classes.thanks__address_continer}>
@@ -217,11 +174,19 @@ function ThanksAppleMusic() {
         </div>
 
         <div className={classes.thanks__map}>
-          <img src={'img/bitmap.png'} alt="logo" />
+          <CustomMap />
         </div>
       </div>
     </Layout>
   );
 }
 
-export default ThanksAppleMusic;
+const mapStateToProps = (state) => ({
+  privilege: state.thanksReducer.privilege,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getPrivilegeAction: () => dispatch(getPrivilegeAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ThanksAppleMusic);

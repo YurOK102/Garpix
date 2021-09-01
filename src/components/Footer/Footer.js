@@ -1,22 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
+import { getMenuListAction } from '../../store/sagas/partnersSaga';
 import { useStylesFooter } from './FooterStyles';
 
-function Footer() {
+function Footer({ menuList, getMenuListAction }) {
   const classes = useStylesFooter();
 
-  const arr = [
-    { name: 'Купоны и сертификаты' },
-    { name: 'Впечатления' },
-    { name: 'Авиабилеты' },
-    { name: 'Ж/д билеты' },
-    { name: 'Отели' },
-    { name: 'Каршеринг' },
-    { name: 'Театры' },
-    { name: 'Страхование' },
-    { name: 'Как подключиться' },
-    { name: 'Партнеры' },
-  ];
+  useEffect(() => {
+    getMenuListAction();
+  }, [getMenuListAction]);
 
   return (
     <div className={classes.footer_continer}>
@@ -32,7 +25,7 @@ function Footer() {
           </div>
 
           <ul className={classes.footer__menu}>
-            {arr.map((i, index) => {
+            {menuList.map((i, index) => {
               return (
                 <li key={index}>
                   <a href="/">{i.name}</a>
@@ -105,4 +98,12 @@ function Footer() {
   );
 }
 
-export default Footer;
+const mapStateToProps = (state) => ({
+  menuList: state.partnersReducer.menuList,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getMenuListAction: () => dispatch(getMenuListAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

@@ -6,7 +6,9 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { Provider } from 'react-redux';
 
-import { rootReducer } from './store/reducers/rootReducer';
+import rootReducer from './store/reducers/rootReducer';
+import { rootSaga } from './store/rootSaga';
+
 import App from './App';
 import { theme } from './theme/theme';
 
@@ -17,6 +19,7 @@ const store = createStore(
   rootReducer,
   enhancers(applyMiddleware(sagaMiddleware))
 );
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>

@@ -44,7 +44,7 @@ const palette = {
     white: '#ffffff',
     black: '#000000',
     green: '#00D36D',
-    grey: '#E5E5E5',
+    grey: '#F2F4F7',
     another_grey: '#7E7E7E',
   },
   secondary: {
@@ -279,65 +279,9 @@ export const theme = createTheme({
           borderRadius: '8px',
         },
         body: {
-          background: '#E5E5E5',
+          // background: '#E5E5E5',
         },
       },
     },
-
-    MuiFormLabel: {
-      root: {
-        fontFamily: 'Gilroy',
-        fontWeight: '500',
-        fontSize: '16px',
-        lineHeight: '22px',
-      },
-    },
-
-    MuiOutlinedInput: {
-      root: {
-        borderRadius: '10px',
-      },
-      multiline: {
-        padding: '20px',
-      },
-    },
-
-    MuiInputBase: {
-      root: {
-        fontFamily: 'Gilroy',
-        fontWeight: '500',
-        fontSize: '16px',
-        lineHeight: '22px',
-      },
-    },
-
-    // MuiContainer: {
-    //   root: {
-    //     [breakpoints.up('xs')]: {
-    //       padding: '0 12px',
-    //     },
-    //     [breakpoints.up('sm')]: {
-    //       padding: '0 24px',
-    //     },
-    //     [breakpoints.up('md')]: {
-    //       padding: '0 32px',
-    //     },
-    //     [breakpoints.up('xl')]: {
-    //       padding: '0 172px',
-    //     },
-    //   },
-    // },
-    // MuiButton: {
-    //   contained: {
-    //     boxShadow: 'none',
-    //     '&:disabled': {
-    //       color: palette.primary.gray_500,
-    //       backgroundColor: palette.primary.gray_300,
-    //     },
-    //     '&:hover, &:focus': {
-    //       boxShadow: 'none',
-    //     },
-    //   },
-    // },
   },
 });
